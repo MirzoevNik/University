@@ -1,0 +1,40 @@
+frame 0 0 800 400
+
+translate 40 360
+figure
+
+translate 100 0
+pushTransform
+
+translate 0 -280
+rotate 30
+figure
+
+pushTransform
+
+translate 160 0
+figure
+
+translate 160 0
+figure
+
+popTransform
+rotate 60
+translate 0 -580
+scale 2
+figure
+
+translate 80 0
+figure
+
+
+popTransform
+
+translate 140 0
+figure
+
+translate 240 0
+figure
+
+translate 240 0
+figure
