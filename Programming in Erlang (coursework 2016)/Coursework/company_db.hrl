@@ -1,0 +1,1 @@
+-record( department, { name, employees } ).
