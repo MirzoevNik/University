@@ -1,0 +1,15 @@
+3
+D
+F
+"[a]"
+4
+c
+a
+B
+"[[[a]]]"
+4
+cD B
+BD Dc
+BD aFa
+aF FB
+D

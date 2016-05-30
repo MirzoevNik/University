@@ -1,0 +1,12 @@
+2
+C
+A
+2
+c
+b
+4
+A bC
+bA cAb
+cCc cc
+cCc cCCc
+A
