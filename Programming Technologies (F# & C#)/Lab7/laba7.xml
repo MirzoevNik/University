@@ -1,0 +1,53 @@
+﻿<Window xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation'
+        xmlns:x='http://schemas.microsoft.com/winfx/2006/xaml'
+        Title='Тест по дисциплине «Технологии программирования»' Height='600' Width='500'>
+  <Grid>
+    <Label Name='label1' Content='1. Что такое рекурсивная функция?' HorizontalAlignment='Left'
+           FontWeight='Bold' Margin='20,20,0,0'/>
+    <TextBox Name='textBox1' Height='25' Width='400' HorizontalAlignment='Left' VerticalAlignment='Top'
+             Margin='20,45,0,0'/>
+    
+    <Label Name='label2' Content='2. Выберите виды циклов в языке F#' HorizontalAlignment='Left'
+           FontWeight='Bold' Margin='20,70,0,0'/>
+    <CheckBox Name='checkBox21' Content='for ... to' HorizontalAlignment='Left' VerticalAlignment='Top'
+           Margin='40,95,0,0'/>
+    <CheckBox Name='checkBox22' Content='for ... in' HorizontalAlignment='Left' VerticalAlignment='Top'
+           Margin='40,115,0,0'/>
+    <CheckBox Name='checkBox23' Content='repeat ... until' HorizontalAlignment='Left' VerticalAlignment='Top'
+           Margin='40,135,0,0'/>
+    <CheckBox Name='checkBox24' Content='while ... do' HorizontalAlignment='Left' VerticalAlignment='Top'
+           Margin='40,155,0,0'/>
+    <CheckBox Name='checkBox25' Content='do ... while' HorizontalAlignment='Left' VerticalAlignment='Top'
+           Margin='40,175,0,0'/>
+
+    <Label Name='label3' Content='3. Выберите способ задания кортежей' HorizontalAlignment='Left'
+           FontWeight='Bold' Margin='20,200,0,0'/>
+    <RadioButton Name='radioButton31' Content='( ... )' HorizontalAlignment='Left' VerticalAlignment='Top' 
+                 Margin='40,225,0,0'/>
+    <RadioButton Name='radioButton32' Content='[ ... ]' HorizontalAlignment='Left' VerticalAlignment='Top'
+                 Margin='40,245,0,0'/>
+    <RadioButton Name='radioButton33' Content='" ... "' HorizontalAlignment='Left' VerticalAlignment='Top'
+                 Margin='40,265,0,0'/>
+
+    <Label Name='label4' Content='4. Выберите функции для сортировки списков в языке F#' HorizontalAlignment='Left'
+           FontWeight='Bold' Margin='20,290,0,0'/>
+    <CheckBox Name='checkBox41' Content='List.sort' HorizontalAlignment='Left' VerticalAlignment='Top'
+           Margin='40,315,0,0'/>
+    <CheckBox Name='checkBox42' Content='List.sortReverse' HorizontalAlignment='Left' VerticalAlignment='Top'
+           Margin='40,335,0,0'/>
+    <CheckBox Name='checkBox43' Content='List.sortBy' HorizontalAlignment='Left' VerticalAlignment='Top'
+           Margin='40,355,0,0'/>
+    <CheckBox Name='checkBox44' Content='List.sortFromTo' HorizontalAlignment='Left' VerticalAlignment='Top'
+           Margin='40,375,0,0'/>
+    <CheckBox Name='checkBox45' Content='List.sortWith' HorizontalAlignment='Left' VerticalAlignment='Top'
+           Margin='40,395,0,0'/>
+
+    <Label Name='label5' Content='5. Введите язык разметки в технологии WPF' HorizontalAlignment='Left'
+           FontWeight='Bold' Margin='20,420,0,0'/>
+    <TextBox Name='textBox5' Height='25' Width='400' HorizontalAlignment='Left' VerticalAlignment='Top'
+             Margin='20,445,0,0'/>
+    
+    <Button Name='buttonAnswer' Content='Ответить' Height='30' Width='100' 
+            HorizontalAlignment='Left' VerticalAlignment='Top' Margin='200,500,0,0'/>
+  </Grid>
+</Window>
