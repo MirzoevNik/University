@@ -6,12 +6,12 @@ import java.util.*
 /**
  * @author mirzoevnik
  */
-object CongruentGenerator {
+object ShiftRegister {
 
-    private val FILE_NAME_SRC = "/congruent_generator_src.txt"
-    private val FILE_NAME_KEY = "/congruent_generator_key.txt"
-    private val FILE_NAME_ENCODE = "/congruent_generator_encode.txt"
-    private val FILE_NAME_DECODE = "/congruent_generator_decode.txt"
+    private val FILE_NAME_SRC = "/shift_register_src.txt"
+    private val FILE_NAME_KEY = "/shift_register_key.txt"
+    private val FILE_NAME_ENCODE = "/shift_register_encode.txt"
+    private val FILE_NAME_DECODE = "/shift_register_decode.txt"
 
     private val fileSrc = File(javaClass.getResource(FILE_NAME_SRC).toURI())
     private val fileKey = File(javaClass.getResource("/").path + FILE_NAME_KEY)
@@ -37,24 +37,48 @@ object CongruentGenerator {
     }
 
     private fun generateKey(alphabet : List<String>, size : Int) : String {
-        print("Enter A: ")
-        val a = readLine().toString().toInt()
-        print("Enter C: ")
-        val c = readLine().toString().toInt()
-        print("Enter m: ")
-        val m = readLine().toString().toInt() % alphabet.size
-        print("Enter T(0): ")
-        val t0 = readLine().toString().toInt() % alphabet.size
-
-        var key = alphabet[t0].toString()
+        var key = ""
         (0..size).map {
-            val value = (a * alphabet.indexOf(key.last().toString()) + c) % m
-            key += alphabet[value]
+            var initSeq = 1
+            (1..Random().nextInt(size - 1) + 1).map {
+                if (Random().nextBoolean()) {
+                    initSeq = initSeq.shl(1) + 0b1
+                } else {
+                    initSeq = initSeq.shl(1) + 0b0
+                }
+            }
+
+            var keySymbolPosition = 1
+            val bitsSize = Random().nextInt(size) + 1
+            while(countBits(keySymbolPosition) < bitsSize) {
+                val currentSeqSize = countBits(initSeq)
+                val lastBit = initSeq.xor(initSeq.shr(1).shl(1) + 0b0)
+                val secondBit = initSeq.shr(currentSeqSize - 2).xor(0b10)
+                val x = 1.shl(currentSeqSize)
+                val y = lastBit.xor(secondBit).shl(currentSeqSize - 1)
+                val z = initSeq.xor(1.shl(currentSeqSize - 1))
+                initSeq = 1.shl(currentSeqSize)
+                            .or(lastBit.xor(secondBit).shl(currentSeqSize - 1))
+                            .or(initSeq.xor(1.shl(currentSeqSize - 1)))
+                keySymbolPosition = keySymbolPosition.shl(1).or(lastBit)
+            }
+
+            key += alphabet[keySymbolPosition % alphabet.size]
         }
 
         fileKey.createNewFile()
         fileKey.appendText(key)
         return key
+    }
+
+    private fun countBits(bitSequence : Int) : Int {
+        var copyBitSequence = bitSequence
+        var result = 0
+        while(copyBitSequence != 0) {
+            copyBitSequence = copyBitSequence.shr(1)
+            result++
+        }
+        return result
     }
 
     fun encode() {
