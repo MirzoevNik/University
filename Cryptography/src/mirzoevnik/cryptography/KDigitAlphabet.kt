@@ -27,13 +27,12 @@ object KDigitAlphabet {
         fileDecode.delete()
         fileKey.delete()
 
+        initAlphabet()
+
         print("Enter k: ")
-        k = readLine().toString().toInt()
+        k = readLine().toString().toInt() % alphabet.size
         print("Enter p: ")
         p = readLine().toString().toInt()
-
-        initAlphabet()
-        generateKey(alphabet)
     }
 
     private fun initAlphabet() {
@@ -45,7 +44,7 @@ object KDigitAlphabet {
         ('а'..'я').map { alphabet.add(it.toString()) }
     }
 
-    private fun generateKey(alphabet : List<String>) : String {
+    private fun generateKey() : String {
         val alphabetCopy = ArrayList<String>(alphabet)
         var key = ""
         (0..p).map {
@@ -54,21 +53,24 @@ object KDigitAlphabet {
             key += value
         }
 
-        fileKey.createNewFile()
         fileKey.appendText(key)
+        fileKey.appendText(System.lineSeparator())
         return key
     }
 
     fun encode() {
-        val key = fileKey.readLines().first()
+        fileKey.createNewFile()
+        var key = generateKey()
         var currentNumber = 0
         fileEncode.createNewFile()
         fileSrc.forEachLine {
+            p %= it.length
             it.forEach {
                 fileEncode.appendText(getEncodedSymbol(it.toString(), key[currentNumber].toString()))
                 currentNumber++
                 if (currentNumber == p) {
                     currentNumber = 0
+                    key = generateKey()
                 }
             }
             fileEncode.appendText(System.lineSeparator())
@@ -76,7 +78,8 @@ object KDigitAlphabet {
     }
 
     fun decode() {
-        val key = fileKey.readLines().first()
+        var keys = fileKey.readLines().toMutableList()
+        var key = keys.first()
         var currentNumber = 0
         fileDecode.createNewFile()
         fileEncode.forEachLine {
@@ -85,6 +88,8 @@ object KDigitAlphabet {
                 currentNumber++
                 if (currentNumber == p) {
                     currentNumber = 0
+                    keys.removeAt(0)
+                    key = keys.first()
                 }
             }
             fileDecode.appendText(System.lineSeparator())
